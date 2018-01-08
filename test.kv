@@ -1,0 +1,125 @@
+#:kivy 1.0
+#:import Window kivy.core.window
+<MenuScreen>:
+    Label:
+        text: 'Python Coding Game Lesson'
+        font_size: 40
+        pos_hint: {"center_x": .5, "center_y": .65}
+        
+            
+
+    BoxLayout:
+        spacing: 50
+        padding: 30
+        size_hint_y: None
+        height: "100dp"
+        pos_hint: {"center_x": .5, "center_y": .3}
+
+        
+            
+        Button:
+            text: 'Begin'
+            on_press: root.manager.current = 'begin'
+        Button:
+            text: 'Help'
+            on_press: root.manager.current = 'help'
+        Button:
+            text: 'Exit'
+            on_press: root.app.stop()   
+
+            
+
+<BeginScreen>:
+    Label:
+        text: 'eiei'
+        pos_hint: {"center_x": .5, "center_y": .65}
+    
+    BoxLayout:
+        spacing: 50
+        padding: 30
+        size_hint_y: None
+        height: "100dp"
+        pos_hint: {"center_x": .5, "center_y": .2}
+
+        Button:
+            text: 'Lesson 1'
+            on_press: root.manager.current = 'lesson_1'  
+        
+        Button:
+            text: 'Back to menu'
+            on_press: root.manager.current = 'menu'  
+        
+<HelpScreen>:
+    BoxLayout:
+        orientation: "horizontal"
+        height: 30
+ 
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_x: .25
+ 
+            TabbedPanel:
+                do_default_tab: False
+ 
+                TabbedPanelItem:
+                    text: "Command"
+                    BoxLayout:
+                        spacing: 30
+                        padding: 30
+                        size_hint_y: None
+                        height: "100dp"
+                        
+                        Label:
+                            text: 'eiei'
+                            font_size: 40
+            
+
+                TabbedPanelItem:
+                    text: "How to Play"
+                    Label:
+                        text: "1"       
+                TabbedPanelItem:
+                    text: "Purpose"
+                    Label:
+                        text: "eiei"
+    
+    BoxLayout:
+        spacing: 30
+        padding: 30
+        size_hint_y: None
+        height: "100dp"
+        pos_hint: {"center_x": .5, "center_y": .1}
+                
+        
+        Button:
+            text: 'Back to menu'
+            on_press: root.manager.current = 'menu'
+
+<Lesson_1>:
+    popup: popup.__self__
+    Label:
+        text: 'Lesson 1'
+        pos_hint:{"center_x": .2, "center_y": .8}
+
+    BoxLayout:
+        orientation: "horizontal"
+        height: 30
+ 
+        BoxLayout:
+            id: bl
+            orientation: "horizontal"
+            size_hint_x: .25
+            Popup:
+                id: popup
+                on_parent:
+                    if self.parent == bl: self.parent.remove_widget(self)
+                Button:
+                    text: 'Close Popup'
+                    on_press: popup.dismiss()
+            Button:
+                text: "Open Popup"
+                on_press: root.popup.open()
+
+    
+        
+                   
